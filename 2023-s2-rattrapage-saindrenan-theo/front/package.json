@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@angular/flex-layout": "^15.0.0-beta.42",
+    "@angular/material": "^17.0.2"
+  }
+}

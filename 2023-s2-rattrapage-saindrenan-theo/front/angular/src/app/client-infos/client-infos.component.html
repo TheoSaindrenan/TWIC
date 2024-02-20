@@ -1,0 +1,79 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Client Profile</mat-card-title>
+  </mat-card-header>
+  
+    <mat-card-content>
+
+    <div>
+        <mat-form-field>
+            <mat-label>customer_id:</mat-label>
+            <input matInput type="text" id="customer_id" [(ngModel)]="customer.customer_id" disabled>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>account_no:</mat-label>
+          <input matInput type="text" id="account_no" [(ngModel)]="customer.account_no" disabled>
+        </mat-form-field>
+      </div>
+  
+      <div>
+        <mat-form-field>
+          <mat-label>first_name:</mat-label>
+          <input matInput type="text" id="first_name" [(ngModel)]="customer.first_name">
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>last_name:</mat-label>
+          <input matInput type="text" id="last_name" [(ngModel)]="customer.last_name">
+        </mat-form-field>
+      </div>
+  
+      <div>
+        <mat-form-field>
+          <mat-label>email:</mat-label>
+          <input matInput type="text" id="email" [(ngModel)]="customer.email">
+        </mat-form-field>
+      </div>
+  
+      <div>
+        <mat-form-field>
+          <mat-label>registration_timestamp:</mat-label>
+          <input matInput type="date" id="registration_timestamp" [(ngModel)]="customer.registration_timestamp">
+        </mat-form-field>
+      </div>
+    </mat-card-content>
+</mat-card>
+
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>Orders</mat-card-title>
+    </mat-card-header>
+  
+    <mat-card-content>
+        <mat-table [dataSource]="dataSource" matSort #table>
+            <ng-container matColumnDef="order_id">
+              <th mat-header-cell *matHeaderCellDef> Order Number </th>
+              <td mat-cell *matCellDef="let element"> {{element.order_id}} </td>
+            </ng-container>
+          
+            <ng-container matColumnDef="placed_timestamp">
+              <th mat-header-cell *matHeaderCellDef> Order Date </th>
+              <td mat-cell *matCellDef="let element"> {{element.placed_timestamp}} </td>
+            </ng-container>
+      
+            <ng-container matColumnDef="order_status_name">
+              <th mat-header-cell *matHeaderCellDef> Order Status </th>
+              <td mat-cell *matCellDef="let element"> {{element.order_status_name}} </td>
+            </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onSelectOrder(row.order_id)"></tr>
+        </mat-table>
+        
+        <mat-paginator [pageSizeOptions]="[2, 5, 10, 20]" showFirstLastButtons (page)="onPageChange($event)"
+        [length]="dataSource.paginator?.length" [pageSize]="pageSize">
+        </mat-paginator>
+
+        <button mat-raised-button color="primary" (click)="onCreateOrder()">New Order</button>
+
+    </mat-card-content>
+</mat-card>

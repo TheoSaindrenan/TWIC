@@ -1,0 +1,117 @@
+@use '@angular/material' as mat;
+@import './colors.scss';
+@import url("https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined");
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+$mat-basic-scheme: (
+  contrast: (
+    100: rgba(0,0,0,0.87),
+    500: rgba(0,0,0,0.87),
+    700: rgba(0,0,0,0.87),
+  )
+);
+
+$mat-primary-scheme: (
+  100: var(--mat-primary-light),
+  500: var(--mat-primary),
+  700: var(--mat-primary-dark),
+  contrast: (
+    100: rgba(0,0,0,0.87),
+    500: #ffffff,
+    700: #ffffff,
+  )
+);
+$mat-accent-scheme: (
+  100: var(--mat-accent-light),
+  500: var(--mat-accent),
+  700: var(--mat-accent-dark),
+  contrast: (
+    100: rgba(0,0,0,0.87),
+    500: rgba(0,0,0,0.87),
+    700: #ffffff,
+  )
+);
+$mat-event-scheme: (
+  100: var(--mat-event-light),
+  500: var(--mat-event),
+  700: var(--mat-event-dark),
+  contrast: (
+    100: rgba(0,0,0,0.87),
+    500: rgba(0,0,0,0.87),
+    700: #ffffff,
+  )
+);
+$mat-primary-palette: mat.define-palette($mat-primary-scheme);
+$mat-accent-palette: mat.define-palette($mat-accent-scheme);
+$mat-event-palette: mat.define-palette($mat-event-scheme);
+
+$app-light-theme: mat.define-light-theme($mat-primary-palette, $mat-accent-palette, $mat-event-palette);
+
+@include mat.all-component-themes($app-light-theme);
+
+// following section is for dark mode.
+// use appropriate class name for darkMode
+$app-dark-theme: mat.define-dark-theme($mat-primary-palette, $mat-accent-palette, $mat-event-palette);
+.darkMode {
+  @include mat.all-component-themes($app-dark-theme);
+}
+
+html, body {
+  font-family: 'K2D', sans-serif;
+  height: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+}
+
+.mat-checkbox-layout{
+  white-space: normal !important;
+}
+.mat-checkbox-inner-container{
+  margin-top: 4px;
+}
+
+.snackbar {
+    background-color: var(--mat-commentary-grey);
+}
+
+.mat-dialog-close-button {
+    float: right;
+    top:-24px;
+    right:-24px;
+}
+
+p, i, b, h1, h2, h3, h4, h5 {
+  text-align: justify;
+}
+
+mat-list-item:hover {
+  cursor: pointer;
+}
+
+.mat-standard-chip {    
+  height: auto !important;
+}
+
+@media screen and (max-width: 400px) {
+  p, i, b, h1, h2, h3, h4, h5 {
+    text-align: left;
+  }
+}
+
+.mat-mdc-checkbox {
+  --mdc-checkbox-selected-checkmark-color: #fff !important;
+}
+
+.mat-mdc-raised-button {
+  --mdc-protected-button-label-text-color: #fff !important;
+  font-weight: bold;
+}
+
+.mat-mdc-unelevated-button {
+  --mdc-filled-button-label-text-color: #fff !important;
+  font-weight: bold;
+}
